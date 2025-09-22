@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<overlay>
+  <name>Has Gen2 Overlay</name>
+  <description>Alternative packages used by Hasues</description>
+	<maintainer type="project">
+		<email>hasues+gentoo@vivaldi.net</email>
+		<name>Fletch Hasues</name>
+	</maintainer>
+  <homepage>https://localhost/hazgen2-overlay</homepage>
+  <source-location>https://localhost/hazgen2-overlay</source-location>
+</overlay>
