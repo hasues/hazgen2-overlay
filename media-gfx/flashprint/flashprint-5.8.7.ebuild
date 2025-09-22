@@ -28,6 +28,10 @@ RDEPEND="
   sys-libs/glibc
 "
 
+QA_PREBUILT="
+  usr/lib/libOCCTWrapper.so.1
+"
+
 # Just shortcut the workdirectory.
 S="${WORKDIR}"
 
@@ -57,7 +61,7 @@ src_install() {
 
   # All needed is to copy files from the paths created from the deb file.
   cp -a "${S}/deb-extract/usr" "${D}/" || die
-  cp -a "${S}/deb-extract/etc" "${D}/" || die
+  cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
 
   # Manage the documentaion
   dodoc "${S}/deb-extract/usr/share/doc/flashprint5/"*
