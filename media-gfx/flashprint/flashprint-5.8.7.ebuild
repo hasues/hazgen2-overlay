@@ -1,0 +1,65 @@
+# Copyfight 2025 Fletch Hasues (J.G)
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+DESCRIPTION="Flashforge FlashPrint 5"
+HOMEPAGE="https://enterprise.flashforge.com/pages/flashprint"
+
+DEB_FILE="6f64d485b9145f2bc1dfca2d8afb7e7d.deb"
+SRC_URI="https://en.fss.flashforge.com/10000/software/${DEB_FILE}"
+
+LICENSE="flashprint"
+SLOT="0"
+KEYWORDS="~amd64"
+
+# No source operations as it comes from a Debian file.
+RESTRICT="mirror strip bindist"
+
+# We need tar for this to work.
+DEPEND="
+  app-alternatives/tar
+"
+
+# We need qtopengl 5 here.  We need to keep this ebuild out separately in case
+#  Gentoo drops this version of Qt from portage.
+RDEPEND="
+  =dev-qt/qtopengl-5.15.17
+  sys-libs/glibc
+"
+
+# Just shortcut the workdirectory.
+S="${WORKDIR}"
+
+src_unpack() {
+
+  # Unpack the .deb file.
+  mkdir "${S}/deb-extract" || die
+  cd  "${S}/deb-extract" || die
+
+  # Extract the .deb file.
+  ar x "${DISTDIR}/${DEB_FILE}" || die
+
+  # This should be `data.tar.xz` but let's test:
+  if [[ -f data.tar.xz ]]; then
+      tar -xf data.tar.xz || die
+  elif [[ -f data.tar.zst ]]; then
+      zstd -d data.tar.zst | tar -xf - || die
+  elif [[ -f data.tar.gz ]]; then
+      tar -xf data.tar.gz || die
+  else
+      die "Unsupported data.tar.* compression in .deb"
+  fi
+
+}
+
+src_install() {
+
+  # All needed is to copy files from the paths created from the deb file.
+  cp -a "${S}/deb-extract/usr" "${D}/" || die
+  cp -a "${S}/deb-extract/etc" "${D}/" || die
+
+  # Manage the documentaion
+  dodoc "${S}/deb-extract/usr/share/doc/flashprint5/"*
+
+}
