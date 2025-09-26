@@ -62,15 +62,20 @@ src_unpack() {
 src_install() {
 
   # All needed is to copy files from the paths created from the deb file.
-  cp -a "${S}/deb-extract/usr" "${D}/" || die
+  cp -a "${S}/deb-extract/usr/share" "${D}/usr" || die
   mkdir -p "${D}/lib/udev/rules.d" || die
   cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
-
+  
+  # Grab the library.
+  insinto /usr/$(get_libdir)
+  doins "${S}/deb-extract/usr/lib/libOCCTWrapper.so.1" || die
+  dosym libOCCTWrapper.so.1 /usr/$(get_libdir)/libOCCTWrapper.so
+  
   # Manage the documentaion
   if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]]
   then
     dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/"*
     rm -r "${D}/usr/share/doc/flashprint5" || die
   fi
-
+  
 }
