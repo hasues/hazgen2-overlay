@@ -67,8 +67,9 @@ src_install() {
   cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
 
   # Manage the documentaion
-  if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]];then
-    dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5*"
+  if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]]
+  then
+    dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/*"
     rm -r "${D}/usr/share/doc/flashprint5" || die
   fi
 
