@@ -12,9 +12,11 @@ SRC_URI="https://en.fss.flashforge.com/10000/software/${DEB_FILE}"
 LICENSE="flashprint"
 SLOT="0"
 KEYWORDS="~amd64"
+INHERIT="udev"
 
 # No source operations as it comes from a Debian file.
 RESTRICT="mirror strip bindist"
+PV="5.8.7"
 
 # We need tar for this to work.
 DEPEND="
@@ -65,6 +67,9 @@ src_install() {
   cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
 
   # Manage the documentaion
-  dodoc "${S}/deb-extract/usr/share/doc/flashprint5/"*
+  if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]];then
+    dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/*"
+    rm -r "${D}/usr/share/doc/flashprint5" || die
+  fi
 
 }
