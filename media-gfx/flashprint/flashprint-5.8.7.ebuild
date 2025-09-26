@@ -68,7 +68,7 @@ src_install() {
 
   # Manage the documentaion
   if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]];then
-    dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/*"
+    dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5*"
     rm -r "${D}/usr/share/doc/flashprint5" || die
   fi
 
