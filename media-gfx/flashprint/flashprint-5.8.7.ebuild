@@ -31,7 +31,7 @@ RDEPEND="
 "
 
 QA_PREBUILT="
-  usr/lib/libOCCTWrapper.so.1
+  usr/$(get_libdir)/libOCCTWrapper.so*
 "
 
 # Just shortcut the workdirectory.
