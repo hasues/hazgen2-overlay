@@ -12,7 +12,7 @@ SRC_URI="https://en.fss.flashforge.com/10000/software/${DEB_FILE}"
 LICENSE="flashprint"
 SLOT="0"
 KEYWORDS="~amd64"
-INHERIT="udev"
+inherit udev
 
 # No source operations as it comes from a Debian file.
 RESTRICT="mirror strip bindist"
@@ -62,7 +62,8 @@ src_unpack() {
 src_install() {
 
   # All needed is to copy files from the paths created from the deb file.
-  cp -a "${S}/deb-extract/usr/share" "${D}/usr" || die
+  cp -a "${S}/deb-extract/usr" "${D}/" || die
+  rm -f "${D}/usr/lib/libOCCTWrapper.so.1" || die
   mkdir -p "${D}/lib/udev/rules.d" || die
   cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
   
