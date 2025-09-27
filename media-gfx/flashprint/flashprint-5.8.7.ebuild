@@ -83,6 +83,7 @@ src_install() {
   # Manage the documentaion
   if [[ -d "${S}/deb-extract/usr/share/doc/flashprint5" ]]
   then
+    gunzip "${S}/deb-extract/usr/share/doc/flashprint5/changelog.gz" || die
     dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/"* || die
   fi
   
