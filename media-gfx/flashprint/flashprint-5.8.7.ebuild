@@ -63,9 +63,9 @@ src_install() {
 
   # All needed is to copy files from the paths created from the deb file.
   insinto /usr/share
-  dodir "${D}/deb-extract/usr/share/FlashPrint5"
-  dodir "${D}/deb-extract/usr/share/applications"
-  dodir "${D}/deb-extract/usr/share/icons"
+  dodir "${S}/deb-extract/usr/share/FlashPrint5"
+  dodir "${S}/deb-extract/usr/share/applications"
+  dodir "${S}/deb-extract/usr/share/icons"
 
   #mkdir -p "${D}/usr/share" || die
   #cp -a "${S}/deb-extract/usr/share/FlashPrint5" "${D}/usr/share" || die
