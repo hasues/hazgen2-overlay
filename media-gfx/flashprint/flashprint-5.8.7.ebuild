@@ -61,17 +61,10 @@ src_unpack() {
 
 src_install() {
 
-  # All needed is to copy files from the paths created from the deb file.
-  #insinto /usr/share
-  #dodir "${S}/deb-extract/usr/share/FlashPrint5"
-  #dodir "${S}/deb-extract/usr/share/applications"
-  #dodir "${S}/deb-extract/usr/share/icons"
-
   mkdir -p "${D}/usr/share" || die
   cp -a "${S}/deb-extract/usr/share/FlashPrint5" "${D}/usr/share" || die
   cp -a "${S}/deb-extract/usr/share/applications" "${D}/usr/share" || die
   cp -a "${S}/deb-extract/usr/share/icons" "${D}/usr/share" || die
-  #rm -f "${D}/usr/lib/libOCCTWrapper.so.1" || die
   mkdir -p "${D}/lib/udev/rules.d" || die
   cp -a "${S}/deb-extract/etc/udev/rules.d/99-flashforge5.rules" "${D}/lib/udev/rules.d" || die
   
