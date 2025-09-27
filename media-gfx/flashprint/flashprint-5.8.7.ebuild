@@ -12,7 +12,7 @@ SRC_URI="https://en.fss.flashforge.com/10000/software/${DEB_FILE}"
 LICENSE="flashprint"
 SLOT="0"
 KEYWORDS="~amd64"
-inherit udev
+inherit udev xdg
 
 # No source operations as it comes from a Debian file.
 RESTRICT="mirror strip bindist"
@@ -86,4 +86,12 @@ src_install() {
     dodoc -r "${S}/deb-extract/usr/share/doc/flashprint5/"* || die
   fi
   
+}
+
+pkg_postinst() {
+    xdg_desktop_database_update
+}
+
+pkg_postrm() {
+    xdg_desktop_database_update
 }
