@@ -91,9 +91,11 @@ src_install() {
 pkg_postinst() {
     xdg_desktop_database_update
     xdg_icon_cache_update
+    udev_reload
 }
 
 pkg_postrm() {
     xdg_desktop_database_update
     xdg_icon_cache_update
+    udev_reload
 }
