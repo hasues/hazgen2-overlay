@@ -26,7 +26,7 @@ DEPEND="
 # We need qtopengl 5 here.  We need to keep this ebuild out separately in case
 #  Gentoo drops this version of Qt from portage.
 RDEPEND="
-  =dev-qt/qtopengl-5.15.17
+  >=dev-qt/qtopengl-5.15.17
   sys-libs/glibc
 "
 
