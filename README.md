@@ -5,6 +5,7 @@ This is a repository for my use to replace the aging "gentoo-overlay" that I cre
 Currently includes:
 
 - FlashPrint5: 3D Printing utility for older FlashForge3D 3D Printers.  Has a reliance on qtopengl v5.
+- qlipper: multiplatform clipboard utility.
 
 ## Gentoo Configuration
 
