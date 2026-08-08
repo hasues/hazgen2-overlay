@@ -1,0 +1,12 @@
+diff '--color=auto' -ur wireplumber-0.4.17/lib/wp/node.c b/lib/wp/node.c
+--- a/lib/wp/node.c	2023-12-03 13:05:19.000000000 -0500
++++ b/lib/wp/node.c	2026-04-13 05:31:03.505263749 -0400
+@@ -631,7 +631,7 @@
+ 
+   struct spa_command cmd =
+       SPA_NODE_COMMAND_INIT(wp_spa_id_value_number (command_value));
+-  pw_node_send_command (wp_proxy_get_pw_proxy (WP_PROXY (self)), &cmd);
++  pw_node_send_command ((struct pw_node *) wp_proxy_get_pw_proxy (WP_PROXY (self)), &cmd);                                                                     
+ }
+ 
+ /*! \defgroup wpimplnode WpImplNode */
