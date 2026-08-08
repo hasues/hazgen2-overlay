@@ -21,6 +21,7 @@ KEYWORDS="~amd64"
 
 DEPEND="
 	>=dev-libs/glib-2.66
+  media-libs/libadwaita
 	gui-libs/gtk:4
 	>=gui-libs/libadwaita-1.2
 	media-video/pipewire
