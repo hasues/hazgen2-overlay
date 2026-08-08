@@ -29,6 +29,7 @@ RDEPEND="${DEPEND}"
 
 BDEPEND="
   virtual/pkgconfig
+  dev-util/blueprint-compiler
 	llvm-core/clang
 "
 
