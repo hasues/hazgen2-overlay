@@ -24,7 +24,6 @@ DEPEND="
 	gui-libs/gtk:4
 	>=gui-libs/libadwaita-1.2
 	media-video/pipewire
-	>=media-video/libwireplumber-compat-0.4.15:0.4
 "
 RDEPEND="${DEPEND}"
 
