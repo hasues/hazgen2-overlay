@@ -140,14 +140,18 @@ CRATES="
 "
 
 declare -A GIT_CRATES=( 
-  [wireplumber-sys]='https://github.com/saivert/wireplumber.rs;04fbbc6ea157cdd7061f6a5f2a6b22e102fccbcc;wireplumber.rs-%commit%/sys' [wireplumber]='https://github.com/saivert/wireplumber.rs;04fbbc6ea157cdd7061f6a5f2a6b22e102fccbcc;wireplumber.rs-%commit%'
+  [wireplumber-sys]='https://github.com/saivert/wireplumber.rs;04fbbc6ea157cdd7061f6a5f2a6b22e102fccbcc;wireplumber.rs-%commit%/sys'
+  [wireplumber]='https://github.com/saivert/wireplumber.rs;04fbbc6ea157cdd7061f6a5f2a6b22e102fccbcc;wireplumber.rs-%commit%'
 )
 
 inherit meson cargo gnome2-utils
 
 DESCRIPTION="Pipewire Volume Control"
 HOMEPAGE="https://github.com/saivert/pwvucontrol"
-SRC_URI="https://github.com/saivert/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="
+    https://github.com/saivert/${PN}/archive/refs/tags/${PV}.tar.gz
+    ${CARGO_CRATE_URIS}
+"
 
 LICENSE="GPL-3"
 # Dependent crate licenses
@@ -174,6 +178,10 @@ BDEPEND="
 "
 
 RUST_MIN_VER="1.80.0"
+
+src_unpack() {
+    cargo_src_unpack
+}
 
 src_configure() {
   meson_src_configure
