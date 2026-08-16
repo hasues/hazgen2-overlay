@@ -146,7 +146,7 @@ declare -A GIT_CRATES=(
 
 inherit meson cargo gnome2-utils
 
-DESCRIPTION="Pipewire Volume Control"
+DESCRIPTION="Pipewire Volume Control Applet"
 HOMEPAGE="https://github.com/saivert/pwvucontrol"
 SRC_URI="
     https://github.com/saivert/${PN}/archive/refs/tags/${PV}.tar.gz
@@ -168,7 +168,9 @@ DEPEND="
   gui-libs/gtk:4
   >=gui-libs/libadwaita-1.2
   media-video/pipewire
+  media-video/wireplumber
 "
+
 RDEPEND="${DEPEND}"
 
 BDEPEND="
@@ -194,11 +196,11 @@ src_configure() {
 }
 
 src_compile() {
-  meson_src_compile
+  cargo_env meson_src_compile
 }
 
 src_install() {
-  meson_src_install
+  cargo_env meson_src_install
 }
 
 pkg_postinst() {
